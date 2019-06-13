@@ -13,11 +13,12 @@ WORKDIR /go/src/go-hello-world
 
 ENV GOPATH=/go
 ENV GOBIN=/app
-ENV HOME=/app
 
 RUN curl https://raw.githubusercontent.com/golang/dep/v0.5.1/install.sh | sh
 
 COPY . /go/src/go-hello-world
+
+RUN go install go-hello-world/src/hello
 
 RUN chown -R 1001:0 /app && \
     chmod -R 775 /app
