@@ -18,6 +18,8 @@ RUN curl https://raw.githubusercontent.com/golang/dep/v0.5.1/install.sh | sh
 
 COPY . /go/src/go-hello-world
 
+RUN dep ensure
+
 RUN go install go-hello-world/src/hello
 
 RUN chown -R 1001:0 /app && \
