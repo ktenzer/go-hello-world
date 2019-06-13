@@ -94,7 +94,7 @@ objects:
             value: "foobar"
           image: ' '
           imagePullPolicy: IfNotPresent
-          name: "${APPLICATION_NAME}-app"
+          name: "${APPLICATION_NAME}"
           terminationMessagePath: /dev/termination-log
           ports:
           -containerPort: 8080
