@@ -11,7 +11,7 @@ pool:
 
 variables:
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
-  GOROOT: '/usr/local/go1.11' # Go installation path
+  GOROOT: '/usr/local/go1.11/gopath' # Go installation path
   GOPATH: '$(system.defaultWorkingDirectory)' # Go workspace path
   modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
 
@@ -34,6 +34,6 @@ steps:
         curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
         dep ensure
     fi
-    go build -v github.com/ktenzer/go-hello-world/src/hello
+    go build -v .
   workingDirectory: '$(modulePath)'
   displayName: 'Get dependencies, then build'
