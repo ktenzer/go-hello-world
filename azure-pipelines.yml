@@ -45,7 +45,7 @@ steps:
 
 - script: |
     $(GOBIN)/hello &
-    PS=`ps -ef |grep hello |grep -v grep |awk '{print $1}'`
+    PS=`ps -ef |grep hello |grep -v grep |awk '{print $2}'`
     echo "hello $PS"
     curl http://localhost:8000/status
     kill -9 $PS
