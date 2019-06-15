@@ -39,13 +39,13 @@ steps:
         curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
         dep ensure
     fi
-    go build -v .
+    go install .
   workingDirectory: '$(modulePath)'
   displayName: 'Get dependencies, then build'
 
 - script: |
     $(GOBIN)/hello &
-    PS=`ps -ef |grep hello |grep -v grep |awk 'print $1'`
+    PS=`ps -ef |grep hello |grep -v grep |awk '{print $1}'`
     curl http://localhost:8000/status
     sleep 10
     kill -9 $PS
