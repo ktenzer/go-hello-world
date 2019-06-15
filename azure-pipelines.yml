@@ -18,8 +18,11 @@ variables:
 steps:
 - script: |
     mkdir -p '$(GOBIN)'
+    echo $(GOBIN)
     mkdir -p '$(GOPATH)/pkg'
+    echo $(GOPATH)/pkg
     mkdir -p '$(modulePath)'
+    echo $(modulePath)
     shopt -s extglob
     shopt -s dotglob
     mv !(gopath) '$(modulePath)'
