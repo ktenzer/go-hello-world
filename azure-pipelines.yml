@@ -13,7 +13,7 @@ variables:
   GOPATH: '$(system.defaultWorkingDirectory)' # Go workspace path
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
 #  GOROOT: '/usr/local/go1.11/gopath' # Go installation path
-  modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
+  modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)/src/hello' # Path to the module's code
 
 steps:
 - script: |
