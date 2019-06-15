@@ -13,7 +13,7 @@ variables:
   GOPATH: '$(system.defaultWorkingDirectory)' # Go workspace path
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
 #  GOROOT: '/usr/local/go1.11/gopath' # Go installation path
-  modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)/src/hello' # Path to the module's code
+  modulePath: '$(GOPATH)/src' # Path to the module's code
 
 steps:
 - script: |
@@ -26,7 +26,7 @@ steps:
     echo $(modulePath)
     shopt -s extglob
     shopt -s dotglob
-    mv !(gopath) '$(modulePath)'
+    # mv !(gopath) '$(modulePath)'
 
     echo '##vso[task.prependpath]$(GOBIN)'
     #echo '##vso[task.prependpath]$(GOROOT)/bin'
