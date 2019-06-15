@@ -18,14 +18,15 @@ variables:
 steps:
 - script: |
     mkdir -p '$(GOBIN)'
-    echo $(GOBIN)
+    ls $(GOBIN)
+    ls -R $(GOPATH)
     mkdir -p '$(GOPATH)/pkg'
     echo $(GOPATH)/pkg
     mkdir -p '$(modulePath)'
     echo $(modulePath)
     shopt -s extglob
     shopt -s dotglob
-    #mv !(gopath) '$(modulePath)'
+    mv !(gopath) '$(modulePath)'
 
     echo '##vso[task.prependpath]$(GOBIN)'
     #echo '##vso[task.prependpath]$(GOROOT)/bin'
