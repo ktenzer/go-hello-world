@@ -39,7 +39,7 @@ steps:
     fi
     ls -R $(GOPATH)
     go install src/hello
-  workingDirectory: '$(GOPATH)/src/hello'
+  workingDirectory: '$(GOPATH)'
   displayName: 'Get dependencies, then build'
 
 - script: |
