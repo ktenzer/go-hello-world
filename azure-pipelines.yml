@@ -43,7 +43,7 @@ steps:
       exit 1
     fi
     go install src/hello
-  workingDirectory: '$(GOPATH)'
+  workingDirectory: '$(GOPATH)/src/hello'
   displayName: 'Get dependencies, then build'
 
 - script: |
