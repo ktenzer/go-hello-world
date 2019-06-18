@@ -18,16 +18,12 @@ variables:
 steps:
 - script: |
     mkdir -p '$(GOBIN)'
-    ls $(GOBIN)
-    ls -R $(GOPATH)
+    mkdir -p '$(GOPATH)/src/hello'
     mkdir -p '$(GOPATH)/pkg'
-    echo $(GOPATH)/pkg
     mkdir -p '$(modulePath)'
-    echo $(modulePath)
+    mv $(system.defaultWorkingDirectory)/* $(GOPATH)/src/hello
     shopt -s extglob
     shopt -s dotglob
-    # mv !(gopath) '$(modulePath)'
-
     echo '##vso[task.prependpath]$(GOBIN)'
     #echo '##vso[task.prependpath]$(GOROOT)/bin'
   displayName: 'Set up the Go workspace'
@@ -42,8 +38,8 @@ steps:
       exit 1
     fi
     ls -R $(GOPATH)
-    go install hello
-  workingDirectory: '$(GOPATH)'
+    go install src/hello
+  workingDirectory: '$(GOPATH)/src/hello'
   displayName: 'Get dependencies, then build'
 
 - script: |
