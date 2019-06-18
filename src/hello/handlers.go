@@ -6,7 +6,6 @@ import (
 )
 
 func GetStatusEndpoint(w http.ResponseWriter, r *http.Request) {
-	broken
 	var status Status
 	status.Msg = "Hello World"
 	status.Version = "1.0.1"
