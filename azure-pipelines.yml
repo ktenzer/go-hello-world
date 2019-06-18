@@ -24,7 +24,7 @@ steps:
     mkdir -p '$(GOPATH)'
     mkdir -p '$(GOBIN)'
     mkdir -p '$(GOPATH)/pkg'
-    mkdir -p '$(GOPATH)/src/fossul'
+    mkdir -p '$(modulePath)'
     echo "Moving $(system.defaultWorkingDirectory)/* To $(modulePath)"
     mv $(system.defaultWorkingDirectory)/* $(modulePath)
     shopt -s extglob
