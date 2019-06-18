@@ -41,7 +41,8 @@ steps:
       echo "ERROR couldn't find Gopkg.toml"
       exit 1
     fi
-    go install src/hello
+    ls -R $(GOPATH)
+    go install hello
   workingDirectory: '$(GOPATH)'
   displayName: 'Get dependencies, then build'
 
