@@ -1,6 +1,6 @@
 ---
 - name: Build Go Application
-  hosts: {{instance_name}}
+  hosts: "{{ instance_name }}"
   become: true
   gather_facts: yes
 
