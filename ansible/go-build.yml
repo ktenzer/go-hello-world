@@ -1,0 +1,9 @@
+---
+- name: Build Go Application
+  hosts: {{instance_name}}
+  become: true
+  gather_facts: yes
+
+  tasks:
+  - import_role:
+      name: go-build
