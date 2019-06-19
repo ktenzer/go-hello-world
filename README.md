@@ -1,5 +1,5 @@
 # go-hello-world
-A hello world microservice written in Golang. The service has an API endpoint /status which returns "hello world" as message and version.
+A hello world microservice written in Golang.
 
 ## Usage
 A Dockerfile is provided so you can just do a docker build. If you are running OpenShift simple run the template provided under the yaml folder.
