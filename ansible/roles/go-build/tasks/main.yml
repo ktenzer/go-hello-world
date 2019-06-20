@@ -49,7 +49,7 @@
   register: go_build
 
 - name: Start Go Webservice
-  shell: "{{ ansible_env.HOME }}/{{ app_name }} &"
+  shell: "{{ ansible_env.HOME }}/{{ app_name }} </dev/null >/dev/null 2>&1 &"
   when: go_build.rc == 0
   register: app_start
 
