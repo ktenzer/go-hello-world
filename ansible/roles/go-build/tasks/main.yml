@@ -35,7 +35,7 @@
   environment:
     GOPATH: "{{ ansible_env.HOME }}/go"
     GOBIN: "{{ ansible_env.HOME }}"
-  when: install_dep == 0
+  when: install_dep.rc == 0
   register: install_go_dependencies
 
 - name: Build Go Application
@@ -43,15 +43,15 @@
   environment:
     GOPATH: "{{ ansible_env.HOME }}/go"
     GOBIN: "{{ ansible_env.HOME }}"
-  when: install_go_dependencies == 0
+  when: install_go_dependencies.rc == 0
   register: go_build
 
 - name: Start Go Webservice
   shell: "{{ ansible_env.HOME }}/{{ app_name }}"
-  when: go_build == 0
+  when: go_build.rc == 0
   register: app_start
 
 - name: Test Webservice
   uri:
     url: http://localhost:8000/status
-  when: app_start == 0
+  when: app_start.rc == 0
