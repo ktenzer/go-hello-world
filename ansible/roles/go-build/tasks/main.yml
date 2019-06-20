@@ -53,12 +53,10 @@
   async: 60
   poll: 0
   when: go_build.rc == 0
-  register: app_start
 
 - name: Test {{ app_name }} Webservice
   uri:
     url: http://localhost:8000/status
-  when: app_start.rc == 0
 
 - name: Get {{ app_name }} Webservice PID
   shell: pgrep {{ app_name }}
