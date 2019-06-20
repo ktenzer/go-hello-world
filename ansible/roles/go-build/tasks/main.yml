@@ -1,3 +1,12 @@
+- name: Wait port 22 to become available on {{ instance_name }}
+  wait_for:
+    port: 22
+    host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
+    search_regex: OpenSSH
+    delay: 10
+  vars:
+    ansible_connection: local
+
 - name: Install Golang
   dnf:
     name:
