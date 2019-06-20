@@ -35,6 +35,8 @@
   environment:
     GOPATH: "{{ ansible_env.HOME }}/go"
     GOBIN: "{{ ansible_env.HOME }}"
+  args:
+    chdir: "{{ ansible_env.HOME }}/go/src/{{ repo_name }}" 
   when: install_dep.rc == 0
   register: install_go_dependencies
 
