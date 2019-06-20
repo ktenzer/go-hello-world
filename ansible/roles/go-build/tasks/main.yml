@@ -49,11 +49,21 @@
   register: go_build
 
 - name: Start Go Webservice
-  shell: "{{ ansible_env.HOME }}/{{ app_name }} </dev/null >/dev/null 2>&1 &"
+  shell: "{{ ansible_env.HOME }}/{{ app_name }}"
+  async: 60
+  poll: 0
   when: go_build.rc == 0
   register: app_start
 
-- name: Test Webservice
+- name: Test {{ app_name }} Webservice
   uri:
     url: http://localhost:8000/status
   when: app_start.rc == 0
+
+- name: Get {{ app_name }} Webservice PID
+  shell: pgrep {{ app_name }}
+  register: hello_pid
+
+- name: Kill {{ app_name }} Webservice
+  shell: kill -9 hello_pid.stdout_lines
+  when: hello_pid.rc == 0
