@@ -1,4 +1,12 @@
 ---
+- name: Wait for ssh to come up
+  hosts: "{{ instance_name }}"
+  become: false
+  gather_facts: no
+
+  tasks:
+    - wait_for: host="{{ instance_name }}" port=22 delay=10  timeout=300
+
 - name: Build and Test Go Application
   hosts: "{{ instance_name }}"
   become: false
