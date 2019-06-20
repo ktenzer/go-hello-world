@@ -1,3 +1,57 @@
-- name: Hello World
-  command: "echo \"hello world\""
+- name: Install Golang
+  dnf:
+    name:
+      - golang
+    state: latest
+  become: true
 
+- name: Create Go src directory
+  file:
+    path: "{{ ansible_env.HOME }}/go/src"
+    state: directory
+    mode: '0755'
+
+- name: Clone Git Repo "{{ repo_url }}"
+  git:
+    repo: "{{ repo_url }}"
+    dest: "{{ ansible_env.HOME }}/go/src"
+    version: "{{ repo_branch }}"
+
+- name: Download Dep (Golang package manager)
+  get_url:
+    url: https://raw.githubusercontent.com/golang/dep/v0.5.1/install.sh
+    dest: "{{ ansible_env.HOME }}"
+    mode: 0755
+
+- name: Install Dep (Golang package manager
+  shell: "{{ ansible_env.HOME }}/install.sh"
+  environment:
+    GOPATH: "{{ ansible_env.HOME }}/go"
+    GOBIN: "{{ ansible_env.HOME }}"
+  register: install_dep
+
+- name: Install Golang Dependencies
+  shell: "{{ ansible_env.HOME }}/dep ensure"
+  environment:
+    GOPATH: "{{ ansible_env.HOME }}/go"
+    GOBIN: "{{ ansible_env.HOME }}"
+  when: install_dep == 0
+  register: install_go_dependencies
+
+- name: Build Go Application
+  shell: "go install {{ app_path }}/{{ app_name }}"
+  environment:
+    GOPATH: "{{ ansible_env.HOME }}/go"
+    GOBIN: "{{ ansible_env.HOME }}"
+  when: install_go_dependencies == 0
+  register: go_build
+
+- name: Start Go Webservice
+  shell: "{{ ansible_env.HOME }}/{{ app_name }}"
+  when: go_build == 0
+  register: app_start
+
+- name: Test Webservice
+  uri:
+    url: http://localhost:8000/status
+  when: app_start == 0

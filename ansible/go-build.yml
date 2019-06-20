@@ -1,7 +1,7 @@
 ---
-- name: Build Go Application
+- name: Build and Test Go Application
   hosts: "{{ instance_name }}"
-  become: true
+  become: false
   gather_facts: yes
 
   tasks:
