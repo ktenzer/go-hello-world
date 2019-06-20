@@ -63,5 +63,6 @@
   register: hello_pid
 
 - name: Kill {{ app_name }} Webservice
-  shell: kill -9 {{ hello_pid.stdout_lines }}
+  shell: kill -9 {{ item }}
   when: hello_pid.rc == 0
+  with_items: "{{ hello_pid.stdout_lines }}"
