@@ -14,7 +14,7 @@
 - name: Clone Git Repo "{{ repo_url }}"
   git:
     repo: "{{ repo_url }}"
-    dest: "{{ ansible_env.HOME }}/go/src"
+    dest: "{{ ansible_env.HOME }}/go/src/{{ repo_name }}"
     version: "{{ repo_branch }}"
 
 - name: Download Dep (Golang package manager)
