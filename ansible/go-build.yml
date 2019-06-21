@@ -9,9 +9,9 @@
         port: 22
         host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
         search_regex: OpenSSH
-        delay: 20
+        delay: 30
       vars:
-        ansible_connection: ssh
+        ansible_connection: localhost
 
 - name: Build and Test Go Application
   hosts: "{{ instance_name }}"
