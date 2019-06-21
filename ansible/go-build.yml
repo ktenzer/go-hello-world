@@ -1,15 +1,15 @@
 ---
-#- name: Wait for ssh to come up
-#  hosts: "{{ instance_name }}"
-#  become: false
-#  gather_facts: no
-#
-#  tasks:
-#    - wait_for:
-#        port: 22
-#        host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
-#        search_regex: OpenSSH
-#        delay: 10
+- name: Wait for ssh to come up
+  hosts: "{{ instance_name }}"
+  become: false
+  gather_facts: no
+
+  tasks:
+    - wait_for:
+        port: 22
+        host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
+        search_regex: OpenSSH
+        delay: 10
 #      vars:
 #        ansible_connection: local
 
