@@ -10,8 +10,6 @@
         host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
         search_regex: OpenSSH
         delay: 30
-      vars:
-        ansible_connection: local
 
 - name: Build and Test Go Application
   hosts: "{{ instance_name }}"
