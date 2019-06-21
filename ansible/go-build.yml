@@ -5,11 +5,14 @@
   gather_facts: no
 
   tasks:
-    - wait_for:
-        port: 22
-        host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
-        search_regex: OpenSSH
-        delay: 30
+    - wait_for_connection:
+        delay: 15
+        timeout: 180  
+    #- wait_for:
+    #    port: 22
+    #    host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
+    #    search_regex: OpenSSH
+    #    delay: 30
 
 - name: Build and Test Go Application
   hosts: "{{ instance_name }}"
