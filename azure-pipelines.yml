@@ -4,11 +4,11 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/go
 
 trigger:
-- master
+#- master
 - feature/*
 
-pr:
-- master
+#pr:
+#- master
 
 pool:
   vmImage: 'ubuntu-latest'
