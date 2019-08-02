@@ -4,6 +4,13 @@
       - golang
     state: latest
   become: true
+  
+  - name: Install selinux python bindings
+  dnf:
+    name:
+      - libselinux-python
+    state: latest
+  become: true
 
 - name: Create Go src directory
   file:
