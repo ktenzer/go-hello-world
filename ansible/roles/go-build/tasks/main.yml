@@ -5,7 +5,7 @@
     state: latest
   become: true
   
-  - name: Install selinux python bindings
+- name: Install selinux python bindings
   dnf:
     name:
       - libselinux-python
