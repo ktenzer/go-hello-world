@@ -56,7 +56,9 @@
   register: go_build
 
 - name: Start Go Webservice
-  shell: "{{ ansible_env.HOME }}/{{ app_name }} </dev/null >/dev/null 2>&1 &"
+  shell: "{{ ansible_env.HOME }}/{{ app_name }}"
+  async: 2592000               # 60*60*24*30 – 1 month
+  poll: 0
   when: go_build.rc == 0
 
 - name: Test {{ app_name }} Webservice
