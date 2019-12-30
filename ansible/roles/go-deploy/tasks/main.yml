@@ -57,8 +57,6 @@
 
 - name: Start Go Webservice
   shell: "{{ ansible_env.HOME }}/{{ app_name }}"
-  async: 60
-  poll: 0
   when: go_build.rc == 0
 
 - name: Test {{ app_name }} Webservice
