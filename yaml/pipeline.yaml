@@ -31,7 +31,7 @@ spec:
       resources:
         inputs:
           - name: image
-            resource: hello-image
+            resource: image-registry.openshift-image-registry.svc:5000/go-hello-world/hello:latest
       params:
         - name: deployment
           value: "hello"
