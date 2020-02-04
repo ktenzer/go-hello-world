@@ -4,8 +4,6 @@ metadata:
   name: update-deployment
 spec:
   inputs:
-    resources:
-      - {type: image, name: image}
     params:
       - name: deployment
         description: The name of the deployment patch the image
@@ -17,9 +15,4 @@ spec:
       command: ["/bin/bash", "-c"]
       args:
         - |-
-          oc patch deployment $(inputs.params.deployment) --patch='{"spec":{"template":{"spec":{
-            "containers":[{
-              "name": "$(inputs.params.deployment)",
-              "image":"$(inputs.resources.image.url)"
-            }]
-          }}}}'
+          oc patch deployment $(inputs.params.deployment) -p "{\"spec\":{\"template\":{\"metadata\":{\"labels\":{\"date\":\"`date +'%s'`\"}}}}}"

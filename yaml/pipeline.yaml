@@ -28,10 +28,6 @@ spec:
     - name: update-hello-image
       taskRef:
         name: update-deployment
-      resources:
-        inputs:
-          - name: image
-            resource: hello-image
       params:
         - name: deployment
           value: "hello"
