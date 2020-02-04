@@ -15,9 +15,9 @@ spec:
         app: hello
     spec:
       containers:
-        - image: quay.io/repository/ktenzer/go-hello-world:latest
+        - image: image-registry.openshift-image-registry.svc:5000/go-hello-world/hello:latest
           imagePullPolicy: Always
-          name: ui
+          name: hello
           ports:
             - containerPort: 8080
               protocol: TCP
