@@ -4,8 +4,6 @@ metadata:
   name: update-deployment
 spec:
   inputs:
-    resources:
-      - {type: image, name: image}
     params:
       - name: deployment
         description: The name of the deployment patch the image
