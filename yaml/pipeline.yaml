@@ -1,0 +1,39 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: build-and-deploy
+spec:
+  resources:
+    - name: hello-repo
+      type: git
+    - name: hello-image
+      type: image
+
+  tasks:
+    - name: build-hello
+      taskRef:
+        name: buildah
+        kind: ClusterTask
+      resources:
+        inputs:
+          - name: source
+            resource: hello-repo
+        outputs:
+          - name: image
+            resource: hello-image
+      params:
+        - name: TLSVERIFY
+          value: "false"
+
+    - name: update-hello-image
+      taskRef:
+        name: update-deployment
+      resources:
+        inputs:
+          - name: image
+            resource: hello-image
+      params:
+        - name: deployment
+          value: "hello"
+      runAfter:
+        - build-hello

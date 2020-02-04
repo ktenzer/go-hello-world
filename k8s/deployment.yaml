@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello
+  name: hello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+        - image: quay.io/repository/ktenzer/go-hello-world:latest
+          imagePullPolicy: Always
+          name: ui
+          ports:
+            - containerPort: 8080
+              protocol: TCP
