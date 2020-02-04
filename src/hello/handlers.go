@@ -7,7 +7,7 @@ import (
 
 func GetStatusEndpoint(w http.ResponseWriter, r *http.Request) {
 	var status Status
-	status.Msg = "Hello World Munich"
+	status.Msg = "Hello World"
 	status.Version = "1.0.1"
 
 	json.NewEncoder(w).Encode(status)
